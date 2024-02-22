@@ -61,6 +61,12 @@
                 ";
     $cargo = $mysqli->query($query);
 
+    // Para la lista de cargos
+    $query = "  SELECT *
+                FROM tipo_cargo                
+                ";
+    $cargosEditar = $mysqli->query($query);
+
     
 ?>
 <!DOCTYPE html>
@@ -73,7 +79,7 @@
          <!-- inicio pagina -->       
         <div id="layoutSidenav_content">
             <main>
-                <div class="card-header BG-primary mt-1"><b style="color: white;"><i class="fa fa-user-circle" style='font-size:24px'></i>&nbsp;&nbsp;Cargos</b></div>
+                <div class="card-header BG-primary mt-1"><b style="color: white;"><i class="fas fa-user-tie" style='font-size:24px'></i>&nbsp;&nbsp;Cargos</b></div>
                 <div class="container-fluid px-2">
                     <div class="container mt-3">
 
@@ -245,7 +251,49 @@
                                                 </tfoot>
                                             </table>
                                         </div>
-                                    <!-- fin tabla cargos -->                                
+                                    <!-- tabla cargos -->
+                                    
+                                    <!-- modal editar empleados -->
+                                        <!-- Modal -->
+                                        <?php
+                                                while ($fila = $cargosEditar->fetch_array()) {
+                                                    $idcargo = $fila['id_cargo'];
+                                                    $nombrecargo = $fila['cargo_nombre'];
+                                                      ?>
+                                        <form id="cargo" name="cargo" class="row g-0 p-2" action="cargo_editarproceso.php" method="POST">
+                                            <div class="modal fade" id="ModalCargos<?php echo $idcargo; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user-circle" style='font-size:24px'></i>&nbsp;Modificar Cargo <br></h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>    
+                                                        <div class="modal-body">
+                                                            <div class="mb-1">
+                                                            <input type="hidden" name="id_cargo" id="id_cargo" value="<?php echo $idcargo; ?>" readonly></input>
+                                                                <h6>Corregir cargo:</h6>
+                                                                <h7 class="mb-1"><?php echo $nombrecargo; ?><br><br>
+                                                                <h6>Por:</h6>
+                                                                    
+                                                                    <label class="form-label mt-1"> </label>
+                                                                        <div class="input-group mb-1 mt-2">
+                                                                            <div class="input-group-prepend">
+                                                                                <label class="input-group-text" for="inputGroupSelect01"><i class='fas fa-user-tie'></i>&nbsp;</label>
+                                                                            </div>
+                                                                            <input type="text" name="nombre_cargo" id="nombre_cargo" value="<?php echo $nombrecargo; ?>"></input>
+                                                                        </div>
+                                                            </div>                                           
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" value="editar" class="btn btn-primary btn btn-block">Guardar cambios</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>    
+                                        <?php } ;  ?>                                    
+                                    <!-- modal editar empleados -->
                                     
                                                             
                                 </div>                                            

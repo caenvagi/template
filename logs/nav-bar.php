@@ -221,9 +221,9 @@ $fotouser1 = $mysqli->query("       SELECT      US.nombre,
                                                     <div><i class="fas fa-user-tie" style='font-size:24px'></i></div>
                                                     &nbsp;&nbsp;&nbsp;Cargos
                                                 </a>
-                                                <a class="nav-link" href="../usuarios/usuarios_nuevos.php">
-                                                    <div><i class="fas fa-id-card" style='font-size:24px'></i></div>
-                                                    &nbsp;&nbsp;&nbsp;Usuarios
+                                                <a class="nav-link" href="../usuarios/tipo_usuarios.php">
+                                                    <div><i class="fas fa-user-cog" style='font-size:24px'></i></div>
+                                                    &nbsp;&nbsp;&nbsp;Roles user
                                                 </a>
                                             </nav>
                                         </div>
